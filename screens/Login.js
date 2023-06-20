@@ -24,7 +24,16 @@ export default class LoginScreen extends Component {
 			password: '',
 		};
 	}
-
+	handleLogin = (email, password) => {
+		const auth = getAuth();
+		signInWithEmailAndPassword(auth, email, password)
+			.then(() => {
+				this.props.navigation.navigate('BottomTab');
+			})
+			.catch((error) => {
+				Alert.alert(error.message);
+			});
+	};
 	
 
 	render() {
